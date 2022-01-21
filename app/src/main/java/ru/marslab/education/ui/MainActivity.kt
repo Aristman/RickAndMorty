@@ -1,4 +1,4 @@
-package ru.marslab.education
+package ru.marslab.education.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
