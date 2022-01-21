@@ -74,4 +74,9 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.40.5'
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
+
+    implementation "androidx.room:room-runtime:2.4.1"
+    implementation "androidx.room:room-ktx:2.4.1"
+    implementation "androidx.room:room-rxjava2:2.4.1"
+    kapt "androidx.room:room-compiler:2.4.1"
 }
