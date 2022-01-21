@@ -1,5 +1,5 @@
 package ru.marslab.education.ui.characters
 
-import ru.marslab.marslablib.BaseViewModel
+import androidx.lifecycle.ViewModel
 
-class CharactersViewModel : BaseViewModel<CharacterUi, Throwable>()
+class CharactersViewModel : ViewModel()
