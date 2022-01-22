@@ -5,6 +5,7 @@ data class CharacterUi(
     val name: String,
     val type: String,
     val gender: String,
+    val species: String,
     val image: String,
     val url: String,
     val episodes: List<Int>,

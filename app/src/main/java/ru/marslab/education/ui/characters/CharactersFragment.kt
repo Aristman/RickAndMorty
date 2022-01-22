@@ -53,4 +53,9 @@ class CharactersFragment :
     private fun updateFragment(data: List<CharacterUi>) {
         // TODO("Not yet implemented")
     }
+
+    override fun onDestroyView() {
+        disposableContainer.dispose()
+        super.onDestroyView()
+    }
 }
