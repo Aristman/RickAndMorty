@@ -4,14 +4,20 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.marslab.education.data.CharacterRepositoryMockImpl
+import ru.marslab.education.data.CharacterRepositoryImpl
+import ru.marslab.education.data.retrofit.CharacterApi
 import ru.marslab.education.domain.repository.CharacterRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
+//    @Provides
+//    @Named("Mock")
+//    fun provideCharacterMockRepository(): CharacterRepository =
+//        CharacterRepositoryMockImpl()
+
     @Provides
-    fun provideCharacterRepository(): CharacterRepository =
-        CharacterRepositoryMockImpl()
+    fun provideCharacterRepository(characterApi: CharacterApi): CharacterRepository =
+        CharacterRepositoryImpl(characterApi)
 }

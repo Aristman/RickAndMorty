@@ -10,5 +10,6 @@ fun Character.toUi(): CharacterUi =
         gender = gender.name,
         image = image,
         url = url,
-        episodes = episodes.map { it.split('/').last().toInt() }
+        episodes = episodes.map { it.split('/').last().toInt() },
+        species = species
     )

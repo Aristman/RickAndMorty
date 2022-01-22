@@ -3,10 +3,10 @@ package ru.marslab.education.domain.model
 data class Character(
     val id: Int = 0,
     val name: String = "",
-    val status: Status = Status.Alive,
+    val status: Status = Status.alive,
     val species: String = "",
     val type: String = "",
-    val gender: Gender = Gender.Male,
+    val gender: Gender = Gender.male,
     val origin: CharLocation = CharLocation(),
     val location: CharLocation = CharLocation(),
     val image: String = "",
@@ -15,16 +15,16 @@ data class Character(
     val created: String = ""
 ) {
     enum class Status {
-        Alive,
-        Dead,
-        Unknown
+        alive,
+        dead,
+        unknown
     }
 
     enum class Gender {
-        Female,
-        Male,
-        Genderless,
-        Unknown
+        female,
+        male,
+        genderless,
+        unknown
     }
 
     data class CharLocation(
