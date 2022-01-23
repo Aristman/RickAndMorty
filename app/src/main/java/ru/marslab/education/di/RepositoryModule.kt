@@ -12,11 +12,6 @@ import ru.marslab.education.domain.repository.CharacterRepository
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-//    @Provides
-//    @Named("Mock")
-//    fun provideCharacterMockRepository(): CharacterRepository =
-//        CharacterRepositoryMockImpl()
-
     @Provides
     fun provideCharacterRepository(characterApi: CharacterApi): CharacterRepository =
         CharacterRepositoryImpl(characterApi)

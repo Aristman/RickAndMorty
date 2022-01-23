@@ -1,7 +1,5 @@
 package ru.marslab.education.data
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.Single
 import ru.marslab.education.data.model.network.toDomain
@@ -12,17 +10,10 @@ import ru.marslab.education.domain.repository.CharacterRepository
 class CharacterRepositoryImpl(private val characterApi: CharacterApi) : CharacterRepository {
     override fun getAllCharacters(): Observable<Character> =
         characterApi.getAllCharacters()
-            .doOnEvent { t1, t2 ->
-                Log.d(TAG, "genders: ${t1.results}")
-                Log.d(TAG, "getAllCharacters: $t1, $t2")
-            }
             .flatMapObservable { response ->
                 Observable.fromIterable(
                     response.results.map { it.toDomain() }
                 )
-            }
-            .doOnEach {
-                Log.d(TAG, "getAllCharacters -----: $it")
             }
 
     override fun getCharacter(id: Int): Single<Character> =
