@@ -6,10 +6,10 @@ fun CharacterNW.toDomain(): Character =
     Character(
         id = id,
         name = name,
-        status = Character.Status.valueOf(status.lowercase()),
+        status = Character.Status.valueOf(status),
         species = species,
         type = type,
-        gender = Character.Gender.valueOf(gender.lowercase()),
+        gender = Character.Gender.valueOf(gender),
         origin = Character.CharLocation(origin.name, origin.url),
         location = Character.CharLocation(location.name, location.url),
         image = image,

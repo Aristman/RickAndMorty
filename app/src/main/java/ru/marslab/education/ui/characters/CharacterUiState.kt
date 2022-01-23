@@ -1,6 +1,6 @@
-package ru.marslab.education.ui.model
+package ru.marslab.education.ui.characters
 
-data class CharacterUi(
+data class CharacterUiState(
     val id: Int,
     val name: String,
     val type: String,
@@ -9,5 +9,6 @@ data class CharacterUi(
     val image: String,
     val url: String,
     val episodes: List<Int>,
-    val isExpand: Boolean = false
+    val isExpand: Boolean = false,
+    val isSelect: Boolean = false
 )

@@ -7,35 +7,45 @@ import androidx.recyclerview.widget.ListAdapter
 import ru.marslab.education.R
 import ru.marslab.education.databinding.ItemCharacterCollapseBinding
 import ru.marslab.education.databinding.ItemCharacterExpandBinding
-import ru.marslab.education.ui.model.CharacterUi
+import ru.marslab.education.ui.characters.CharacterUiState
 
-private val diffCallback = object : DiffUtil.ItemCallback<CharacterUi>() {
-    override fun areItemsTheSame(oldItem: CharacterUi, newItem: CharacterUi): Boolean =
-        oldItem.isExpand == newItem.isExpand
+private val diffCallback = object : DiffUtil.ItemCallback<CharacterUiState>() {
+    override fun areItemsTheSame(oldItem: CharacterUiState, newItem: CharacterUiState): Boolean =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: CharacterUi, newItem: CharacterUi): Boolean =
+    override fun areContentsTheSame(oldItem: CharacterUiState, newItem: CharacterUiState): Boolean =
         oldItem == newItem
 }
 
-class CharacterListAdapter : ListAdapter<CharacterUi, CharacterListViewHolder>(diffCallback) {
+class CharacterListAdapter(
+    private val onCardClick: (item: CharacterUiState) -> Unit,
+    private val onCardLongClick: (item: CharacterUiState) -> Unit,
+    private val onDetailClick: (item: CharacterUiState) -> Unit
+) : ListAdapter<CharacterUiState, CharacterListViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterListViewHolder {
         return when (viewType) {
             R.layout.item_character_collapse -> {
                 CharacterCollapseViewHolder(
-                    ItemCharacterCollapseBinding.inflate(
+                    binding = ItemCharacterCollapseBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    onCardClick = onCardClick,
+                    onCardLongClick = onCardLongClick,
+                    onDetailClick = onDetailClick
                 )
             }
             R.layout.item_character_expand -> {
                 CharacterExpandViewHolder(
-                    ItemCharacterExpandBinding.inflate(
+                    binding = ItemCharacterExpandBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    onCardClick = onCardClick,
+                    onCardLongClick = onCardLongClick,
+                    onDetailClick = onDetailClick
                 )
             }
             else -> {

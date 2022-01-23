@@ -10,7 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import ru.marslab.education.databinding.FragmentCharactersBinding
 import ru.marslab.education.ui.characters.adapter.CharacterListAdapter
-import ru.marslab.education.ui.model.CharacterUi
 import ru.marslab.marslablib.FragmentBindWithVM
 import ru.marslab.marslablib.UiState
 
@@ -22,7 +21,11 @@ class CharactersFragment :
 
     private val disposableContainer = CompositeDisposable()
     private val characterListAdapter by lazy {
-        CharacterListAdapter()
+        CharacterListAdapter(
+            onCardClick = { fragmentViewModel.changeExpanded(it) },
+            onCardLongClick = {},
+            onDetailClick = {}
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +48,7 @@ class CharactersFragment :
         )
     }
 
-    private fun renderData(data: UiState<List<CharacterUi>, Throwable>) {
+    private fun renderData(data: UiState<List<CharacterUiState>, Throwable>) {
         when (data) {
             UiState.Init -> {
                 initView()
@@ -86,7 +89,7 @@ class CharactersFragment :
         }
     }
 
-    private fun showCharactersList(data: List<CharacterUi>) {
+    private fun showCharactersList(data: List<CharacterUiState>) {
         binding.run {
             loadingIndicator.hide()
             charactersList.visibility = View.VISIBLE

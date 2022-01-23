@@ -1,9 +1,9 @@
-package ru.marslab.education.ui.model
+package ru.marslab.education.ui.characters
 
 import ru.marslab.education.domain.model.Character
 
-fun Character.toUi(): CharacterUi =
-    CharacterUi(
+fun Character.toUi(): CharacterUiState =
+    CharacterUiState(
         id = id,
         name = name,
         type = type,

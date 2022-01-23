@@ -8,12 +8,17 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ru.marslab.education.R
 import ru.marslab.education.databinding.ItemCharacterCollapseBinding
 import ru.marslab.education.databinding.ItemCharacterExpandBinding
-import ru.marslab.education.ui.model.CharacterUi
+import ru.marslab.education.ui.characters.CharacterUiState
 
-class CharacterCollapseViewHolder(private val binding: ItemCharacterCollapseBinding) :
-    CharacterListViewHolder(binding) {
+class CharacterCollapseViewHolder(
+    private val binding: ItemCharacterCollapseBinding,
+    onCardClick: (item: CharacterUiState) -> Unit,
+    onCardLongClick: (item: CharacterUiState) -> Unit,
+    private val onDetailClick: (item: CharacterUiState) -> Unit
+) :
+    CharacterListViewHolder(binding, onCardClick, onCardLongClick) {
 
-    override fun bind(item: CharacterUi) {
+    override fun bind(item: CharacterUiState) {
         binding.run {
             Glide.with(binding.root)
                 .load(item.image)
@@ -30,19 +35,49 @@ class CharacterCollapseViewHolder(private val binding: ItemCharacterCollapseBind
             characterGender.text = item.gender
             characterSpecies.text = item.species
         }
+        super.bind(item)
     }
 }
 
-class CharacterExpandViewHolder(private val binding: ItemCharacterExpandBinding) :
-    CharacterListViewHolder(binding) {
-    override fun bind(item: CharacterUi) {
+class CharacterExpandViewHolder(
+    private val binding: ItemCharacterExpandBinding,
+    onCardClick: (item: CharacterUiState) -> Unit,
+    onCardLongClick: (item: CharacterUiState) -> Unit,
+    private val onDetailClick: (item: CharacterUiState) -> Unit
+) :
+    CharacterListViewHolder(binding, onCardClick, onCardLongClick) {
+    override fun bind(item: CharacterUiState) {
         binding.run {
+            Glide.with(binding.root)
+                .load(item.image)
+                .transform(
+                    CenterCrop(),
+                    RoundedCorners(
+                        binding.root.context.resources.getDimension(R.dimen.card_corner_radius)
+                            .toInt()
+                    )
+                )
+                .into(binding.imageCharacter)
+            characterName.text = item.name
+            characterGender.text = item.gender
+            characterSpecies.text = item.species
         }
+        super.bind(item)
     }
 }
 
-abstract class CharacterListViewHolder(binding: ViewBinding) :
+abstract class CharacterListViewHolder(
+    private val binding: ViewBinding,
+    private val onCardClick: (item: CharacterUiState) -> Unit,
+    private val onCardLongClick: (item: CharacterUiState) -> Unit,
+) :
     RecyclerView.ViewHolder(binding.root) {
 
-    abstract fun bind(item: CharacterUi)
+    open fun bind(item: CharacterUiState) {
+        binding.root.setOnClickListener { onCardClick(item) }
+        binding.root.setOnLongClickListener {
+            onCardLongClick(item)
+            true
+        }
+    }
 }
