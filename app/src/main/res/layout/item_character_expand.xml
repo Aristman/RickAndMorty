@@ -2,12 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/CardView.CharacterCard"
+    style="@style/CardView.CharacterCard.ExpandCard"
     android:layout_width="match_parent"
     android:layout_height="@dimen/character_expand_height"
-    android:layout_margin="@dimen/card_margin"
-    app:cardBackgroundColor="?attr/colorPrimary"
-    app:cardCornerRadius="@dimen/card_corner_radius">
+    android:layout_margin="@dimen/card_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +13,6 @@
 
         <ImageView
             android:id="@+id/image_character"
-            style="@style/AvatarImage"
             android:layout_width="@dimen/character_image_size"
             android:layout_height="@dimen/character_image_size"
             android:layout_margin="@dimen/avatar_margin"
