@@ -1,34 +1,34 @@
 package ru.marslab.education.domain.model
 
 data class Character(
-    val id: Int,
-    val name: String,
-    val status: Status,
-    val species: String,
-    val type: String,
-    val gender: Gender,
-    val origin: CharLocation,
-    val location: CharLocation,
-    val image: String,
-    val episodes: List<String>,
-    val url: String,
-    val created: String
+    val id: Int = 0,
+    val name: String = "",
+    val status: Status = Status.Alive,
+    val species: String = "",
+    val type: String = "",
+    val gender: Gender = Gender.Male,
+    val origin: CharLocation = CharLocation(),
+    val location: CharLocation = CharLocation(),
+    val image: String = "",
+    val episodes: List<String> = emptyList(),
+    val url: String = "",
+    val created: String = ""
 ) {
     enum class Status {
         Alive,
         Dead,
-        Unknown
+        unknown
     }
 
     enum class Gender {
         Female,
         Male,
         Genderless,
-        Unknown
+        unknown
     }
 
     data class CharLocation(
-        val name: String,
-        val url: String
+        val name: String = "",
+        val url: String = ""
     )
 }

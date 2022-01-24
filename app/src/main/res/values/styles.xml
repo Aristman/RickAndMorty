@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CardView.CharacterCard">
+        <item name="cornerRadius">@dimen/card_corner_radius</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="AvatarImage">
+        <!--        <item name="android:scaleType">fitCenter</item>-->
+    </style>
+</resources>
